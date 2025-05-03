@@ -1,0 +1,30 @@
+.item {
+  color: rgb(19, 18, 18);
+  width: 500px;
+  margin: 0 auto;
+  font-size: 20px;
+}
+
+.itemName {
+  margin-top: 15px;
+  padding: 0.6rem;
+}
+
+.line {
+  border: 1px solid rgb(252, 217, 217);
+}
+
+.Delete {
+  float: right;
+  border: none;
+  background-color: rgb(220, 220, 247);
+  padding: 6px 16px;
+  margin-bottom: 8px;
+  border-radius: 0.4rem;
+  color: rgb(24, 23, 23);
+  align-items: center;
+}
+
+.complete {
+  text-decoration: line-through;
+}
