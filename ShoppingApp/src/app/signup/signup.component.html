@@ -1,0 +1,139 @@
+<div class="container">
+  <form
+    [formGroup]="regdata"
+    (ngSubmit)="register(regdata)"
+    class="form-container"
+  >
+    <h2>Registration Form</h2>
+    <div>
+      <label>First Name: </label>
+      <input
+        type="text"
+        name="fname"
+        formControlName="fname"
+        class="form-control"
+        id="fname"
+      />
+      <br />
+      <div
+        *ngIf="
+          regdata.controls['fname'].touched && !regdata.controls['fname'].valid
+        "
+        class="error-message"
+      >
+        <span *ngIf="regdata.controls['fname'].hasError('required')">
+          <small>This is required!</small>
+        </span>
+        <span *ngIf="regdata.controls['fname'].hasError('minlength')">
+          <small>Requires minimum of 3 characters</small>
+        </span>
+      </div>
+    </div>
+    <br />
+    <div>
+      <label>Last Name: </label>
+      <input
+        type="text"
+        name="lname"
+        formControlName="lname"
+        class="form-control"
+        id="lname"
+      />
+      <br />
+      <div
+        *ngIf="
+          regdata.controls['lname'].touched && !regdata.controls['lname'].valid
+        "
+        class="error-message"
+      >
+        <span *ngIf="regdata.controls['lname'].hasError('required')">
+          <small>This is required!</small>
+        </span>
+      </div>
+    </div>
+    <br />
+    <div>
+      <label>Email Id: </label>
+      <input
+        type="email"
+        name="email"
+        formControlName="email"
+        class="form-control"
+        id="email"
+      />
+      <br />
+      <div
+        *ngIf="
+          regdata.controls['email'].touched && !regdata.controls['email'].valid
+        "
+        class="error-message"
+      >
+        <span *ngIf="regdata.controls['email'].hasError('required')">
+          <small>This is required!</small>
+        </span>
+        <span *ngIf="regdata.controls['email'].hasError('email')">
+          <small>Provide proper email id</small>
+        </span>
+      </div>
+    </div>
+    <br />
+    <div>
+      <label>Mobile No.: </label>
+      <input
+        type="tel"
+        name="mobileNo"
+        formControlName="mobileNo"
+        class="form-control"
+        id="mobileNo"
+      />
+      <br />
+      <div
+        *ngIf="
+          regdata.controls['mobileNo'].touched &&
+          !regdata.controls['mobileNo'].valid
+        "
+        class="error-message"
+      >
+        <span *ngIf="regdata.controls['mobileNo'].hasError('required')">
+          <small>This is required!</small>
+        </span>
+      </div>
+    </div>
+    <br />
+    <div>
+      <label>Password: </label>
+      <input
+        type="password"
+        name="password"
+        formControlName="password"
+        class="form-control"
+        id="password"
+      />
+      <br />
+      <div
+        *ngIf="
+          regdata.controls['password'].touched &&
+          !regdata.controls['password'].valid
+        "
+        class="error-message"
+      >
+        <span *ngIf="regdata.controls['password'].hasError('required')">
+          <small>This is required!</small>
+        </span>
+        <span *ngIf="regdata.controls['password'].hasError('minlength')">
+          <small>Password should contain at least 8 characters</small>
+        </span>
+      </div>
+    </div>
+    <br />
+    <div>
+      <button type="submit" class="submit-button" [disabled]="regdata.invalid">
+        Submit
+      </button>
+    </div>
+
+    <div>
+      <p>Already have an account ? <a routerLink="/login">Login</a></p>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,81 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 col-sm-6 col-md-4 mt-3">
+      <input
+        type="search"
+        [(ngModel)]="searchText"
+        id="form1"
+        class="form-control search-input"
+        placeholder="Search by title"
+      />
+    </div>
+    <div class="col-12 col-sm-6 col-md-4 mt-3">
+      <input
+        type="search"
+        [(ngModel)]="selectedCategory"
+        id="categoryInput"
+        class="form-control search-input"
+        placeholder="Search by category"
+      />
+    </div>
+    <div class="col-12 col-sm-6 col-md-4 mt-3">
+      <input
+        type="search"
+        id="tagsInput"
+        class="form-control search-input"
+        placeholder="Search by tags (comma separated)"
+        (change)="updateTags($event)"
+      />
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- Loop starts here -->
+    <div
+      *ngFor="
+        let product of productdata
+          | filter : searchText : selectedCategory : selectedTags
+      "
+      class="col-6 col-sm-4 col-md-3"
+    >
+      <div class="card mt-2">
+        <div class="card-body">
+          <div class="card-img-actions w-100 h-100">
+            <img
+              [src]="product.thumbnail"
+              class="card-img img-fluid"
+              [alt]="product.title"
+            />
+          </div>
+        </div>
+        <div class="card-body bg-light text-center">
+          <div>
+            <h6 class="font-weight-semibold">
+              <a style="font-size: 13px" class="text-default">
+                {{ product.title | slice : 0 : 18 }}
+              </a>
+            </h6>
+          </div>
+          <h3 class="mb-0 font-weight-semibold">
+            {{ product.price | currency : "INR" }}
+          </h3>
+          <button
+            [routerLink]="['/product-detail', product.id]"
+            class="btn btn-sm btn-dark mt-2"
+          >
+            <i class="fa fa-solid fa-info mr-2"></i>&nbsp;&nbsp; View details
+          </button>
+          <!-- 
+          <button *ngIf="showadd" (click)="addtocart(product)" class="btn btn-sm btn-warning mt-2">
+            <i class="fa fa-cart-plus mr-2"></i>&nbsp;Add to cart
+          </button>
+          <button *ngIf="showremove" (click)="removeitem(product)" class="btn btn-sm btn-danger mt-2">
+            <i class="fa fa-remove mr-2"></i>&nbsp;Remove Item
+          </button> 
+          -->
+        </div>
+      </div>
+    </div>
+    <!-- Loop ends here -->
+  </div>
+</div>

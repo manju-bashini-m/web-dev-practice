@@ -1,0 +1,84 @@
+<div class="container">
+  <div class="row product-detail">
+    <div class="col-sm-4 mt-0">
+      <div *ngIf="productdata">
+        <img class="product-img h-75 w-75" [src]="productdata.images[0]" />
+        <div class="m-5">
+          <button
+            (click)="addtocart(productdata)"
+            *ngIf="showadd"
+            class="btn btn-success"
+          >
+            Add to Cart
+          </button>
+          <button
+            (click)="removeitem(productdata)"
+            *ngIf="showremove"
+            class="btn btn-info"
+          >
+            Remove Item
+          </button>
+
+          <hr />
+
+          <!-- Specifications -->
+          <div class="mt-4">
+            <h4>Specifications</h4>
+            <ul>
+              <li>Brand: {{ productdata.brand }}</li>
+              <li>SKU: {{ productdata.sku }}</li>
+              <li>Weight: {{ productdata.weight }} g</li>
+              <li>
+                Dimensions: {{ productdata.dimensions.width }} x
+                {{ productdata.dimensions.height }} x
+                {{ productdata.dimensions.depth }} cm
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- right side -->
+    <div class="col-sm-8">
+      <div *ngIf="productdata">
+        <h1>{{ productdata.title }}</h1>
+        <p style="color: green">Special Price</p>
+        <h3>Price: ${{ productdata.price }}</h3>
+        <strong>Category: {{ productdata.category }}</strong
+        ><br />
+        <br />
+        <strong>Description:</strong><br />
+        <p>{{ productdata.description }}</p>
+        <p style="color: green">
+          Discount: {{ productdata.discountPercentage }}%
+        </p>
+        <strong>Stocks: {{ productdata.stock }} Units left</strong><br />
+
+        <hr />
+        <!-- Customer Reviews -->
+        <div class="mt-4">
+          <h4>Customer Reviews</h4>
+          <div *ngIf="productdata.reviews && productdata.reviews.length > 0">
+            <div class="card mb-3" *ngFor="let review of productdata.reviews">
+              <div class="card-body">
+                <h5 class="card-title">{{ review.reviewerName }}</h5>
+                <p class="card-text">Rating: {{ review.rating }}</p>
+                <p class="card-text">Comment: {{ review.comment }}</p>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="!productdata.reviews || productdata.reviews.length === 0">
+            <p>No reviews available.</p>
+          </div>
+        </div>
+
+        <hr />
+
+        <button routerLink="/product" class="btn btn-warning text-light mt-2">
+          BACK
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

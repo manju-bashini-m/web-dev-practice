@@ -1,0 +1,69 @@
+<div *ngIf="!authService.isLoggedIn()" class="container">
+  <h2>Login Form</h2>
+
+  <form [formGroup]="logindata" (ngSubmit)="login(logindata)">
+    <div>
+      <label>Email Id: </label>
+      <input
+        type="email"
+        name="email"
+        formControlName="email"
+        class="form-control"
+      />
+      <br />
+      <div
+        *ngIf="
+          logindata.controls['email'].touched &&
+          !logindata.controls['email'].valid
+        "
+        class="error-message"
+      >
+        <span *ngIf="logindata.controls['email'].hasError('required')">
+          <small>This is required!</small>
+        </span>
+        <span *ngIf="logindata.controls['email'].hasError('email')">
+          <small>Provide proper email id</small>
+        </span>
+      </div>
+    </div>
+    <br />
+    <div>
+      <label>Password: </label>
+      <input
+        type="password"
+        name="password"
+        formControlName="password"
+        class="form-control"
+      />
+      <br />
+      <div
+        *ngIf="
+          logindata.controls['password'].touched &&
+          !logindata.controls['password'].valid
+        "
+        class="error-message"
+      >
+        <span *ngIf="logindata.controls['password'].hasError('required')">
+          <small>This is required!</small>
+        </span>
+      </div>
+    </div>
+    <br />
+    <div>
+      <button
+        type="submit"
+        class="submit-button"
+        [disabled]="logindata.invalid"
+      >
+        Submit
+      </button>
+    </div>
+    <div>
+      <p>New User ? <a routerLink="/signup">SignUp</a></p>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="authService.isLoggedIn()" class="container">
+  <h1>You are Already LogedIn</h1>
+</div>

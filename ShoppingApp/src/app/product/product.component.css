@@ -1,0 +1,17 @@
+.product {
+  position: relative; /* Ensures child elements can be positioned relative to the hero section */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: rgba(0, 0, 0, 0.7);
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff; /* Ensures text is visible over the background */
+}
+.search-input {
+  margin: 10px;
+  font-size: 1.2rem;
+  border-radius: 20px;
+}
